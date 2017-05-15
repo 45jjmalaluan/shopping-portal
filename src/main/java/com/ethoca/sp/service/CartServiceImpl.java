@@ -1,10 +1,7 @@
 package com.ethoca.sp.service;
 
 import com.ethoca.sp.comm.dto.Cart;
-import com.ethoca.sp.comm.dto.Item;
-import com.ethoca.sp.comm.dto.Product;
 import com.ethoca.sp.comm.target.CartRestClient;
-import com.ethoca.sp.comm.target.ProductRestClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +20,11 @@ public class CartServiceImpl implements CartService {
     @Override
     public Cart create(Cart cart) {
         return cartRestClient.create(cart);
+    }
+
+    @Override
+    public void appendProduct(String carId, String productId, int quantity) {
+        cartRestClient.appendProduct(carId, productId, quantity);
     }
 
     @Override

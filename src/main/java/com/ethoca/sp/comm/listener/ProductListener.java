@@ -26,35 +26,36 @@ public class ProductListener {
     private CartService cartService;
 
     @RequestMapping(value = "/products")
-    public String viewAll(Model model, HttpServletRequest request) {
+    public String viewAll(Model model) {
         List<Product> result = productRestClient.fetchAll();
         model.addAttribute("productDtos", result);
         return "products";
     }
 
     @RequestMapping(value = "/buyProduct")
-    public String choosen(Model model, HttpServletRequest request, @RequestParam(value = "id", defaultValue = "") String productId) {
+    public String choosen(HttpServletRequest request,
+        @RequestParam(value = "id", defaultValue = "") String productId) {
         Product product = null;
-        /*
         if (StringUtils.isNoneEmpty(productId)) {
             product = productRestClient.fetch(productId);
         }
         if (product != null) {
-            Cart cart = null;
+            Cart cart;
             if (!cartService.existsInSession(request)) {
                 // create the cart
                 cart = new Cart();
-                cart.addProduct(product,1);
+                cart.addProduct(product, 1);
                 cart = cartService.create(cart);
-                // store the cart in session
-                cartService.save(request, cart);
             } else {
                 // get the cart in session
-                cartService.get(request);
+                cart = cartService.get(request);
+                cart.addProduct(product, 1);
+                cartService.appendProduct(cart.getId(), productId, 1);
             }
+            // store the cart in session
+            cartService.save(request, cart);
         }
-         */
         // Redirect to shopping cart page.
-        return "redirect:/notFound";
+        return "redirect:/cart";
     }
 }

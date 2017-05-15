@@ -13,7 +13,7 @@ import java.util.List;
 /**
  *
  */
-public abstract class AbstractRestClient<D extends Object> {
+public abstract class AbstractRestClient<D> {
     @Autowired
     private RestTemplate restTemplate;
 
@@ -37,21 +37,19 @@ public abstract class AbstractRestClient<D extends Object> {
 
     protected URI composeTargetUri(String targetUrl, Object... uriVariableValues) {
         UriComponentsBuilder uriBuilder = UriComponentsBuilder
-                .fromUriString(targetUrl);
+            .fromUriString(targetUrl);
         //
         UriComponents uriComponents = uriBuilder.build();
-        URI uri = uriComponents.expand(uriVariableValues).toUri();
-        //
-        return uri;
+        return uriComponents.expand(uriVariableValues).toUri();
     }
 
     protected List<D> getAll(URI targetUri) {
         ResponseEntity<List<D>> responseEntity = restTemplate.exchange(
-                targetUri,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<List<D>>() {
-                });
+            targetUri,
+            HttpMethod.GET,
+            null,
+            new ParameterizedTypeReference<List<D>>() {
+            });
         if (responseEntity.getStatusCode() == HttpStatus.OK) {
             return responseEntity.getBody();
         } else {
@@ -61,10 +59,10 @@ public abstract class AbstractRestClient<D extends Object> {
 
     protected D get(URI targetUri, Class<D> clazz) {
         ResponseEntity<D> responseEntity = restTemplate.exchange(
-                targetUri,
-                HttpMethod.GET,
-                null,
-                clazz
+            targetUri,
+            HttpMethod.GET,
+            null,
+            clazz
         );
         if (responseEntity.getStatusCode() == HttpStatus.OK) {
             return responseEntity.getBody();
@@ -76,15 +74,27 @@ public abstract class AbstractRestClient<D extends Object> {
     protected D post(URI targetUri, D body, Class<D> clazz) {
         HttpHeaders headers = new HttpHeaders();
         ResponseEntity<D> responseEntity = restTemplate.exchange(
-                targetUri,
-                HttpMethod.POST,
-                new HttpEntity(body, headers),
-                clazz
+            targetUri,
+            HttpMethod.POST,
+            new HttpEntity(body, headers),
+            clazz
         );
         if (responseEntity.getStatusCode() == HttpStatus.CREATED) {
             return responseEntity.getBody();
         } else {
             throw new RuntimeException("Failed for post");
+        }
+    }
+
+    protected void put(URI targetUri, Class<D> clazz) {
+        ResponseEntity<D> responseEntity = restTemplate.exchange(
+            targetUri,
+            HttpMethod.PUT,
+            null,
+            clazz
+        );
+        if (responseEntity.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException("Failed for put");
         }
     }
 }

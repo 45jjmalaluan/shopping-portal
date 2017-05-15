@@ -16,4 +16,10 @@ public class CartRestClient extends AbstractRestClient<Cart> {
         URI uri = composeTargetUri(getResouceUrl());
         return post(uri, cart, Cart.class);
     }
+
+    public void appendProduct(String carId, String productId, int quantity) {
+        String resouceUrl = getResouceUrl() + "/{cartId}/product/{productId}/quantity/{quantity}";
+        URI uri = composeTargetUri(resouceUrl, carId, productId, quantity);
+        put(uri, Cart.class);
+    }
 }
