@@ -21,7 +21,7 @@
     <div class="page-title">My Cart</div>
 
     <c:if test="${empty cartDto or empty cartDto.items}">
-        <h2>There is no items in Cart</h2>
+        <h2>Empty Cart</h2>
         <a href="${pageContext.request.contextPath}/products">Show Product List</a>
     </c:if>
 
@@ -48,7 +48,7 @@
                                 <fmt:formatNumber value="${item.price}" type="currency"/>
                              </span>
                         </li>
-                        <li><a href="${pageContext.request.contextPath}/shoppingCartRemoveProduct?productId=${item.product.id}">Delete </a></li>
+                        <li><a href="${pageContext.request.contextPath}/removeCartProduct?productId=${item.product.id}">Delete</a></li>
                     </ul>
                 </div>
             </c:forEach>

@@ -14,7 +14,10 @@
        <h3>Demo content</h3>
 
        <ul>
-          <li>View the list of products</li>
+           <li>View the list of products</li>
+           <li>View the cart</li>
+           <li>Add product item to cart</li>
+           <li>Remove product item from cart</li>
        </ul>
    </div>
 </body>

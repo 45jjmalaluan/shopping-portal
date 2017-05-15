@@ -1,5 +1,7 @@
 package com.ethoca.sp.comm.dto;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,26 +36,18 @@ public class Cart {
         items.add(item);
     }
 
-    /*
-    public void updateProduct(String productId, int quantity) {
-        CartLineInfo item = this.findLineByCode(code);
-
-        if (item != null) {
-            if (quantity <= 0) {
-                this.cartLines.remove(line);
-            } else {
-                line.setQuantity(quantity);
+    public void removeProduct(Cart currCart, String productId) {
+        Item removeCandidate = null;
+        List<Item> items = currCart.getItems();
+        for (Item item : items) {
+            String itemProductId = item.getProduct().getId();
+            if (StringUtils.equals(productId, itemProductId)) {
+                removeCandidate = item;
+                break;
             }
         }
-    }
-
-    public void updateQuantity(Cart cartReq) {
-        if (cartReq != null) {
-            List<Item> items = cartReq.getItems();
-            for (Item item : items) {
-                this.updateProduct(item.getProduct().getId(), item.getQuantity());
-            }
+        if (removeCandidate != null) {
+            items.remove(removeCandidate);
         }
     }
-     */
 }

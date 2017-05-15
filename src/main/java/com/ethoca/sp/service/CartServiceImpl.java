@@ -28,6 +28,11 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public void removeProduct(String carId, String productId) {
+        cartRestClient.removeProduct(carId, productId);
+    }
+
+    @Override
     public void save(HttpServletRequest request, Cart cart) {
         request.getSession().setAttribute(CART, cart);
     }

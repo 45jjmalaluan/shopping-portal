@@ -97,4 +97,8 @@ public abstract class AbstractRestClient<D> {
             throw new RuntimeException("Failed for put");
         }
     }
+
+    protected void delete(URI targetUri) {
+        restTemplate.delete(targetUri);
+    }
 }

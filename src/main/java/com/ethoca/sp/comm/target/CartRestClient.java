@@ -22,4 +22,10 @@ public class CartRestClient extends AbstractRestClient<Cart> {
         URI uri = composeTargetUri(resouceUrl, carId, productId, quantity);
         put(uri, Cart.class);
     }
+
+    public void removeProduct(String carId, String productId) {
+        String resouceUrl = getResouceUrl() + "/{cartId}/product/{productId}";
+        URI uri = composeTargetUri(resouceUrl, carId, productId);
+        delete(uri);
+    }
 }

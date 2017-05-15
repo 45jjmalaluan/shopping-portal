@@ -7,7 +7,7 @@
       Product List
    </a>
    |
-   <a href="${pageContext.request.contextPath}/notFound">
+   <a href="${pageContext.request.contextPath}/cart">
       My Cart
    </a>
    |
