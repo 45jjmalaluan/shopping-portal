@@ -18,6 +18,7 @@
            <li>View the cart</li>
            <li>Add product item to cart</li>
            <li>Remove product item from cart</li>
+           <li>Update product item quantity</li>
        </ul>
    </div>
 </body>

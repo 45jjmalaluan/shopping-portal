@@ -30,7 +30,4 @@ The following command will build the war file.
 
 ### In progress
 
-* Specify the quantity for each product.
-* Update quantity.
-* Remove product from cart.
 * Submit order.
