@@ -33,6 +33,11 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public void updateProduct(String carId, String productId, int quantity) {
+        cartRestClient.updateProduct(carId, productId, quantity);
+    }
+
+    @Override
     public void save(HttpServletRequest request, Cart cart) {
         request.getSession().setAttribute(CART, cart);
     }

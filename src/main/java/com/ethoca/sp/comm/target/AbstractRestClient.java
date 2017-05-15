@@ -71,7 +71,7 @@ public abstract class AbstractRestClient<D> {
         }
     }
 
-    protected D post(URI targetUri, D body, Class<D> clazz) {
+    protected D post(URI targetUri, Class<D> clazz, D body) {
         HttpHeaders headers = new HttpHeaders();
         ResponseEntity<D> responseEntity = restTemplate.exchange(
             targetUri,
@@ -79,21 +79,24 @@ public abstract class AbstractRestClient<D> {
             new HttpEntity(body, headers),
             clazz
         );
-        if (responseEntity.getStatusCode() == HttpStatus.CREATED) {
+        if (responseEntity.getStatusCode() == HttpStatus.CREATED ||
+            responseEntity.getStatusCode() == HttpStatus.OK) {
             return responseEntity.getBody();
         } else {
             throw new RuntimeException("Failed for post");
         }
     }
 
-    protected void put(URI targetUri, Class<D> clazz) {
+    protected D put(URI targetUri, Class<D> clazz) {
         ResponseEntity<D> responseEntity = restTemplate.exchange(
             targetUri,
             HttpMethod.PUT,
             null,
             clazz
         );
-        if (responseEntity.getStatusCode() != HttpStatus.OK) {
+        if (responseEntity.getStatusCode() == HttpStatus.OK) {
+            return responseEntity.getBody();
+        } else {
             throw new RuntimeException("Failed for put");
         }
     }

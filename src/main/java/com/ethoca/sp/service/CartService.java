@@ -14,6 +14,8 @@ public interface CartService {
 
     void removeProduct(String carId, String productId);
 
+    void updateProduct(String carId, String productId, int quantity);
+
     void save(HttpServletRequest request, Cart cart);
 
     Cart get(HttpServletRequest request);

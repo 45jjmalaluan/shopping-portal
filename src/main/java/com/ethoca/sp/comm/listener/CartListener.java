@@ -1,6 +1,7 @@
 package com.ethoca.sp.comm.listener;
 
 import com.ethoca.sp.comm.dto.Cart;
+import com.ethoca.sp.comm.dto.Item;
 import com.ethoca.sp.comm.dto.Product;
 import com.ethoca.sp.comm.target.ProductRestClient;
 import com.ethoca.sp.service.CartService;
@@ -38,10 +39,27 @@ public class CartListener {
 
     // POST: Update quantity of products in cart.
     @RequestMapping(value = { "/cart" }, method = RequestMethod.POST)
-    public String shoppingCartUpdateQty(HttpServletRequest request,  Model model,
+    public String shoppingCartUpdateQty(HttpServletRequest request,
         @ModelAttribute(CART) Cart cartDto) {
+        // get the cart in session
+        Cart myCart = cartService.get(request);
+        String cartId = myCart.getId();
+        myCart.updateQuantity(cartDto, myCart);
+        if (cartDto != null) {
+            for (Item dtoItem : cartDto.getItems()) {
+                String dtoProductId = dtoItem.getProduct().getId();
+                int quantity = dtoItem.getQuantity();
+                if (quantity > 0) {
+                    cartService.updateProduct(cartId, dtoProductId, quantity);
+                } else {
+                    cartService.removeProduct(cartId, dtoProductId);
+                }
+            }
+        }
+        // store the cart in session
+        cartService.save(request, myCart);
         // Redirect to shopping cart page.
-        return "redirect:/notFound";
+        return "redirect:/cart";
     }
 
     @RequestMapping({ "/removeCartProduct" })
