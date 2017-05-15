@@ -1,0 +1,44 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.7
+
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE")
+    }
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+ext {
+    // spring
+    springframeworkBootGroup = 'org.springframework.boot'
+    springframeworkBootVersion = '1.5.2.RELEASE'
+
+    tomcatVersion = '8.5.11'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // commons
+    compile 'org.apache.commons:commons-lang3:3.5'
+
+    // spring
+    compile "$springframeworkBootGroup:spring-boot-starter-web:$springframeworkBootVersion"
+
+    compile 'javax.servlet:jstl:1.2'
+
+    providedRuntime "org.apache.tomcat.embed:tomcat-embed-jasper:$tomcatVersion"
+}
+
+war {
+    archiveName = 'esp-' + project.version.toString() + ".war"
+}
