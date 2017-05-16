@@ -44,4 +44,8 @@ public class Item {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    public BigDecimal getAmount() {
+        return getProduct().getPrice().multiply(new BigDecimal(getQuantity()));
+    }
 }

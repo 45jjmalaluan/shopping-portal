@@ -45,7 +45,7 @@
                         <li>Quantity: <form:input path="items[${varStatus.index}].quantity" /></li>
                         <li>Subtotal:
                              <span class="subtotal">
-                                <fmt:formatNumber value="${item.price}" type="currency"/>
+                                <fmt:formatNumber value="${item.amount}" type="currency"/>
                              </span>
                         </li>
                         <li><a href="${pageContext.request.contextPath}/removeCartProduct?productId=${item.product.id}">Delete</a></li>
