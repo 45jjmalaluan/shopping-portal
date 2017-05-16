@@ -5,7 +5,7 @@ import com.ethoca.sp.comm.dto.Cart;
 import java.net.URI;
 
 /**
- *
+ * Rest client class for a cart.
  */
 public class CartRestClient extends AbstractRestClient<Cart> {
     public CartRestClient(String resouceUrl) {

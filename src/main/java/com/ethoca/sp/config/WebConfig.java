@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import javax.annotation.Resource;
 
 /**
- *
+ * Configuration class for a web setup.
  */
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {

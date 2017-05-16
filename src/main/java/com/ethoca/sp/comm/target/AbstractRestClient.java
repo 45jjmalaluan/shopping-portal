@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 /**
- *
+ * Abstract REST client class.
  */
 public abstract class AbstractRestClient<D> {
     @Autowired

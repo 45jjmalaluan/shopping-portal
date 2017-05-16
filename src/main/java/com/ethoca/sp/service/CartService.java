@@ -5,7 +5,7 @@ import com.ethoca.sp.comm.dto.Cart;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- *
+ * Service interface for processing cart related operations.
  */
 public interface CartService {
     Cart create(Cart cart);

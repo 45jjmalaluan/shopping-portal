@@ -6,7 +6,7 @@ import java.net.URI;
 import java.util.List;
 
 /**
- *
+ * Rest client class for a product.
  */
 public class ProductRestClient extends AbstractRestClient<Product> {
     public ProductRestClient(String resouceUrl) {

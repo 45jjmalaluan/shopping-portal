@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- *
+ * Controller class for a product.
  */
 @Controller
 public class ProductListener {

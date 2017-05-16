@@ -3,7 +3,7 @@ package com.ethoca.sp.comm.dto;
 import java.math.BigDecimal;
 
 /**
- *
+ * Transfer object class for a product.
  */
 public class Product {
     private String id;

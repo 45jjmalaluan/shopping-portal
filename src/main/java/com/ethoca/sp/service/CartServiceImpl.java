@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- *
+ * Service concrete class for processing cart related operations.
  */
 @Service
 public class CartServiceImpl implements CartService {

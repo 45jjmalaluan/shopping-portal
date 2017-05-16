@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Transfer object class for a cart.
  */
 public class Cart {
     private String id;
